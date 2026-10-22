@@ -1,0 +1,38 @@
+{
+    "players": [
+        { "id": "1", "name": "Lionel Messi", "number": 10, "position": "Forward", "status": "Available" },
+        { "id": "2", "name": "Neymar Jr", "number":10, "position":"Forward", "status": "Injured" },
+        { "id": "3", "name": "Kylian Mbappe", "number": 7, "position":"Forward", "status":"Available" },
+    ],
+    "matches": [
+        {
+            "id": "1",
+            "opponent": "Spartans Fc",
+            "date": "2026-10-26",
+            "time": "4.00 PM",
+            "venue": "The Amex",
+            "status": "Upcoming"
+        },
+        {
+            "id":"2",
+            "opponent": "Titans Fc",
+            "date": "2026-10-15",
+            "score": "2 - 1 (win)",
+            "status": "Played"
+        }
+    ],
+    "training": [
+        {
+            "id":"1",
+            "topic": "Transitional press",
+            "date": "2026-10-24",
+            "time":"4.00 PM",
+            "venue": "Cobham",
+            "attendance": [
+                { "playerId": "1", "status": "Attending" },
+                { "playerId": "2", "status":"Injured" },
+                { "playerId": "3", "status":"Attending" }
+            ]
+        }
+    ]
+}
