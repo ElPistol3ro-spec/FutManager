@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FutManager</title>
+    <link rel="stylesheet" type="text/css" href="./style.css">
+</head>
+<body>
+
+    <div class="dashboard-container">
+
+        <aside class="sidebar">
+            <div class="brand">
+                <h2>FutManager</h2>
+            </div>
+            <nav class="nav-links">
+                <button class="nav-btn active" id="btn-dashboard" data-target="dashboard-screen">Dashboard</button>
+                <button class="nav-btn" id="btn-roster" data-target="roster-screen">Roster</button>
+                <button class="nav-btn" id="btn-matches" data-target="matches-screen">Matches</button>
+                <button class="nav-btn" id="btn-training" data-target="training-screen">Training</button>
+            </nav>
+        </aside>
+
+        <main class="main-content">
+
+            <head class="top-bar">
+                <span class="welcome-text">Welcome back, Coach!</span>
+                <div class="profile-icon"></div>
+            </head>
+
+            <section id="dashboard-screen" class="view-panel">
+                <div class="panel-header">
+                    <h1>Dashboard Overview</h1>
+                </div>
+                <p>Welcome to FutManager! Use the sidebar navigation to manage your squad.</p>
+            </section>
+
+            <section id="roster-screen" class="view-panel" style="display: none;">
+                <div class="panel-header">
+                    <h1>Player Roster</h1>
+                    <button class="btn-accent" id="add-player-btn">Add Player</button>
+                </div>
+                <div id="player-list-container">
+
+                </div>
+            </section>
+
+            <section id="matches-screen" class="view-panel" style="display: none;">
+                <div class="panel-header">
+                    <h1>Matches & Results</h1>
+                    <button class="btn-accent" id="add-match-btn"></button>
+                </div>
+
+                <div class="fixture-card">
+                    <span class="card-subtitle">UPCOMING FIXTURE</span>
+                    <h2 class="opponent-title">vs. Spartans Fc</h2>
+                    <div class="fixture-details">
+                        <p><strong>Date:</strong> Sunday, Oct 25</p>
+                        <p><strong>Kickoff:</strong> 4:00 PM</p>
+                        <p><strong>Venue:</strong> The Amex</p>
+                    </div>
+                </div>
+
+                <div class="results-section">
+                    <h3>PAST MATCH RESULTS</h3>
+                    <div id="matches-list-container">
+
+                    </div>
+                </div>
+
+                <form id="schedule-match-form" style="background: #ffffff; padding: 1.5rem; border-radius: 0.5rem; margin-bottom: 2rem; box-shadow: 0 1px 3px rgba(0,0,0,0.1);">
+                    <h3 style="margin-bottom: 1rem; color: #1e293b;">Schedule New Match</h3>
+                    <div style="display: flex; gap: 1rem; margin-bottom: 1rem;">
+                        <input type="text" id="match-opponent" placeholder="Opponent Team Name" required style="flex: 2; padding: 0.5rem; border: 1px solid #cbd5e1; border-radius: 0.25rem;">
+                        <input type="date" id="match-date" required style="flex: 1; pad: 0.5rem; border: 1px solid #cbd5e1; border-radius: 0.25rem;">
+                    </div>
+                    <button type="submit" style="background: slateblue; color: white; border: none; padding: 0.6rem; font-weight: bold; border-radius: 0.25rem; cursor: pointer; width: 100%;">
+                        Add Fixture
+                    </button>
+                </form>
+
+                <div id="matches-list">
+                    <p style="color: #64748b; font-style: italic;">Loading fixtures...</p>
+                </div>
+            </section>
+
+            <section id="training-screen" class="view-panel" style="display: none;">
+                <div class="panel-header">
+                    <h1>Training Sessions</h1>
+                    <button class="btn-accent" id="add-training-btn">Schedule Training</button>
+                </div>
+
+                <div class="fixture-card">
+                    <span class="card-subtitle">NEXT TRAINING SESSION</span>
+                    <h2 class="opponent-title">Tactics & Conditions</h2>
+                    <div class="fixture-details">
+                        <p><strong>Date:</strong>  Tuesday, Oct 27</p>
+                        <p><strong>Kickoff:</strong> 6:00 PM</p>
+                        <P><strong>Venue:</strong>Cobham</P>
+                    </div>
+                </div>
+
+                <div class="results-sections">
+                    <h3>SESSION ATTENDANCE</h3>
+                    <div id="training-list-container">
+
+                    </div>
+                </div>               
+            </section>
+        </main>
+    </div>
+
+    <div id="match-modal" class="modal-overlay" style="display: none;">
+        <div class="modal-card">
+            <div class="modal-header">
+                <h3>Schedule New Match</h3>
+                <button type="button" class="close-modal-btn" onclick="toggleModal(false)">&times;</button>
+            </div>
+
+            <form id="add-match-form">
+                <div class="form-group">
+                    <label for="modal-opponent">Opponent Name</label>
+                    <input type="text" id="modal-opponent" required placeholder="e.g. Spartans FC">
+                </div>
+
+                <div class="form-group">
+                    <label for="modal-date">Match Date</label>
+                    <input type="date" id="modal-date" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="modal-time">Kickoff Time</label>
+                    <input type="time" id="modal-time" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="modal-venue">Venue</label>
+                    <input type="text" id="modal-venue" required placeholder="e.g. The Amex">
+                </div>
+
+                <div class="modal-actions">
+                    <button type="button" class="btn-secondary" onclick="toggleModal(false)">Cancel</button>
+                    <button type="submit" class="btn-accent">Save</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div id="player-modal" class="modal-overlay" style="display: none;">
+        <div class="modal-card">
+            <div class="modal-header">
+                <h3>Add New Player</h3>
+                <button type="button" class="close-modal-btn" onclick="togglePlayerModal(false)">&times;</button>
+            </div>
+
+            <form id="add-player-form">
+                <div class="form-group">
+                    <label for="player-name">Full Name</label>
+                    <input type="text" id="player-name" required placeholder="e.g. Lionel Messi">
+                </div>
+
+                <div class="form-group">
+                    <label for="player-number">Jersey Number</label>
+                    <input type="number" id="player-number" required placeholder="e.g. 10" min="1" max="99">
+                </div>
+
+                <div class="form-group">
+                    <label for="player-position">Position</label>
+                    <select id="player-position" required>
+                        <option value="" disabled selected>Select Position...</option>
+                        <option value="Goalkeeper">Goalkeeper</option>
+                        <option value="Defender">Defender</option>
+                        <option value="Midfielder">Midfielder</option>
+                        <option value="Forward">Forward</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="player-status">Status</label>
+                    <select id="player-status" required>
+                        <option value="Available">Available</option>
+                        <option value="Injured">Injured</option>
+                        <option value="Suspended">Suspended</option>
+                    </select>
+                </div>
+
+                <div class="modal-actions">
+                    <button type="button" class="btn-secondary" onclick="togglePlayerModal(false)">Cancel</button>
+                    <button type="submit" class="btn-accent">Save</button>
+                </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div id="training-modal" class="modal-overlay" style="display: none;">
+        <div class="modal-card">
+            <div class="modal-header">
+                <h3>Schedule Training Session</h3>
+                <button type="button" class="close-nodal-btn" onclick="toggleTrainingModal(false)">&times;</button>
+            </div>
+            
+            <form id="add-training-form">
+                <div class="form-group">
+                    <label for="training-topic">Training Topic</label>
+                    <input type="text" id="training-topic" required placeholder="e.g. Direct Play">
+                </div>
+
+                <div class="form-group">
+                    <label for="training-date">Session Date</label>
+                    <input type="date" id="training-date" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="training-time">Session Time</label>
+                    <input type="time" id="training-time" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="training-venue">Venue</label>
+                    <input type="text" id="training-venue" required placeholder="e.g. Cobham">
+                </div>
+
+                <div class="modal-actions">
+                    <button type="button" class="btn-secondary" onclick="toggleTrainingModal(false)">Cancel</button>
+                    <button type="submit" class="btn-accent">Schedule Session</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+    
+</body>
+</html>

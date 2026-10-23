@@ -1,0 +1,24 @@
+{
+  "name": "futmanager",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "test": "jest --coverage"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ElPistol3ro-spec/FutManager.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/ElPistol3ro-spec/FutManager/issues"
+  },
+  "homepage": "https://github.com/ElPistol3ro-spec/FutManager#readme",
+  "devDependencies": {
+    "jest": "^30.5.2"
+  }
+}

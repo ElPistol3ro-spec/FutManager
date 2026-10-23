@@ -1,38 +1,73 @@
 {
-    "players": [
-        { "id": "1", "name": "Lionel Messi", "number": 10, "position": "Forward", "status": "Available" },
-        { "id": "2", "name": "Neymar Jr", "number":10, "position":"Forward", "status": "Injured" },
-        { "id": "3", "name": "Kylian Mbappe", "number": 7, "position":"Forward", "status":"Available" },
-    ],
-    "matches": [
+  "players": [
+    {
+      "id": "1",
+      "name": "Lionel Messi",
+      "number": 10,
+      "position": "Forward",
+      "status": "Available"
+    },
+    {
+      "id": "2",
+      "name": "Neymar Jr",
+      "number": 10,
+      "position": "Forward",
+      "status": "Injured"
+    },
+    {
+      "id": "3",
+      "name": "Kylian Mbappe",
+      "number": 7,
+      "position": "Forward",
+      "status": "Available"
+    },
+    {
+      "name": "Cole Palmer",
+      "number": 20,
+      "position": "Forward",
+      "status": "Available",
+      "id": "FwKXLxh3A7w"
+    }
+  ],
+  "matches": [
+    {
+      "id": "1",
+      "opponent": "Spartans Fc",
+      "date": "2026-10-25",
+      "time": "4.00 PM",
+      "venue": "The Amex",
+      "status": "Upcoming"
+    },
+    {
+      "id": "2",
+      "opponent": "Titans Fc",
+      "date": "2026-10-15",
+      "score": "2 - 1 (win)",
+      "status": "Played"
+    }
+  ],
+  "training": [
+    {
+      "id": "1",
+      "topic": "Transitional press",
+      "date": "2026-10-24",
+      "time": "4.00 PM",
+      "venue": "Cobham",
+      "attendance": [
         {
-            "id": "1",
-            "opponent": "Spartans Fc",
-            "date": "2026-10-26",
-            "time": "4.00 PM",
-            "venue": "The Amex",
-            "status": "Upcoming"
+          "playerId": "1",
+          "status": "Attending"
         },
         {
-            "id":"2",
-            "opponent": "Titans Fc",
-            "date": "2026-10-15",
-            "score": "2 - 1 (win)",
-            "status": "Played"
-        }
-    ],
-    "training": [
+          "playerId": "2",
+          "status": "Injured"
+        },
         {
-            "id":"1",
-            "topic": "Transitional press",
-            "date": "2026-10-24",
-            "time":"4.00 PM",
-            "venue": "Cobham",
-            "attendance": [
-                { "playerId": "1", "status": "Attending" },
-                { "playerId": "2", "status":"Injured" },
-                { "playerId": "3", "status":"Attending" }
-            ]
+          "playerId": "3",
+          "status": "Attending"
         }
-    ]
+      ]
+    }
+  ],
+  "$schema": "./node_modules/json-server/schema.json"
 }
