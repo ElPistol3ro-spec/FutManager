@@ -51,7 +51,6 @@ if (playerForm) {
     })
 }
 }
-
 async function fetchSquadRoster() {
     try {
         const response = await fetch(API_URL)
