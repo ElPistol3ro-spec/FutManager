@@ -16,7 +16,6 @@ if (cancelBtn) {
   });
 }
 });
-
 function initializePlayerForm() {
 const playerForm = document.getElementById('add-player-form')
 if (playerForm) {
