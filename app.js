@@ -7,33 +7,17 @@ document.addEventListener('DOMContentLoaded', () => {
     setupViewNavigation()
     fetchSquadRoster()
     fetchMatchesList()
-})
-
-async function fetchSquadRoster() {
-    try {
-        const response = await fetch(API_URL)
-
-        if(!response.ok) {
-            throw new Error(`Server responded with a status of ${response.status}`)
-        }
-
-        squadPlayers = await response.json()
-        console.log("Operational layout data successfully fetched from database:", squadPlayers)
-
-        renderPlayerCards()
-    } catch (error) {
-        console.error("Critical Error mapping data flow from backend server:", error.message)
-
-        const rosterContainer = document.getElementById('player-list-container')
-        if (rosterContainer) {
-            rosterContainer.innerHTML = `
-               <div style="background: #fee2e2; color: #991b1b; padding: 1rem; border-radius: 0.375rem;">
-                <strong>Connection Error:</strong> Could not load player data profiles. Ensure your terminal json-server command is active.
-                </div`
-        }
-    }
+    initializePlayerForm()
+    const cancelBtn = document.getElementById('cancel-training-btn');
+if (cancelBtn) {
+  cancelBtn.addEventListener('click', () => {
+    const modal = document.getElementById('training-modal');
+    if (modal) modal.style.display = 'none';
+  });
 }
+});
 
+function initializePlayerForm() {
 const playerForm = document.getElementById('add-player-form')
 if (playerForm) {
   playerForm.addEventListener('submit', async (e) => {
@@ -65,6 +49,32 @@ if (playerForm) {
             alert("Failed to save new player")
         }
     })
+}
+}
+
+async function fetchSquadRoster() {
+    try {
+        const response = await fetch(API_URL)
+
+        if(!response.ok) {
+            throw new Error(`Server responded with a status of ${response.status}`)
+        }
+
+        squadPlayers = await response.json()
+        console.log("Operational layout data successfully fetched from database:", squadPlayers)
+
+        renderPlayerCards()
+    } catch (error) {
+        console.error("Critical Error mapping data flow from backend server:", error.message)
+
+        const rosterContainer = document.getElementById('player-list-container')
+        if (rosterContainer) {
+            rosterContainer.innerHTML = `
+               <div style="background: #fee2e2; color: #991b1b; padding: 1rem; border-radius: 0.375rem;">
+                <strong>Connection Error:</strong> Could not load player data profiles. Ensure your terminal json-server command is active.
+                </div`
+        }
+    }
 }
 
 function renderPlayerCards () {
@@ -252,14 +262,60 @@ function setupViewNavigation() {
   })
 }
 
+const SESSIONS_URL = 'http://localhost:3000/sessions';
 
+function setupTrainingFormListener() {
+  const trainingForm = document.getElementById('add-training-form');
+  if (!trainingForm) return;
 
+  trainingForm.addEventListener('submit', async (e) => {
+    e.preventDefault(); 
 
+    
+    const topicEl = document.getElementById('training-topic');
+    const dateEl = document.getElementById('training-date');
+    const timeEl = document.getElementById('training-time');
+    const venueEl = document.getElementById('training-venue');
 
+    if (!topicEl || !dateEl || !timeEl || !venueEl) {
+      console.error("DOM Mapping Error: One or more training input IDs do not match your HTML fields.");
+      alert("Form error: Couldn't locate input components.");
+      return;
+    }
+    const newSession = {
+      title: topicEl.value.trim(),
+      date: dateEl.value, 
+      time: timeEl.value,
+      venue: venueEl.value.trim()
+    };
 
+    try {
+      
+      const response = await fetch(SESSIONS_URL, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(newSession)
+      });
 
+      
+      if (!response.ok) {
+        throw new Error(`Server returned status code: ${response.status}`);
+      }
 
+      
+      alert(" Success! New training session scheduled securely.");
+      trainingForm.reset();
 
+      
+      const modalOverlay = document.getElementById('training-modal');
+      if (modalOverlay) {
+        modalOverlay.style.display = 'none';
+      }
 
-
+    } catch (err) {
+      console.error(" POST request execution crashed:", err.message);
+      alert(`Failed to save session: Database rejected session submission. Details: ${err.message}`);
+    }
+  });
+}
 

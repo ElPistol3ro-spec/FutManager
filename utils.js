@@ -1,6 +1,6 @@
 const { number } = require("yargs")
 
-function formartStatusColor(status) {
+function formatStatusColor(status) {
    return status === 'Injured' ? '#ef4444' : '#10b981'
 }
 
@@ -13,4 +13,4 @@ function generatePlayerPayload(name, jerseyNumber, position) {
         status: "Available"
     }
 }
-module.exports = { formartStatusColor, generatePlayerPayload }
+module.exports = { formatStatusColor, generatePlayerPayload }
