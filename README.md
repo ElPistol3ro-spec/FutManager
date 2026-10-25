@@ -30,6 +30,6 @@ This project uses 'json-server' to mock the production database:
 * Leave this terminal window open to allow the frontend to sync data.
 
 ## Live Links
-Deployment Link: https://[ElPistol3ro-spec].github.io/[FutMnager]
-Github Repository: https://github.com/ElPistol3ro-spec/FutManager.git
-Figma UI/UX Wireframe: https://www.figma.com/design/SogUIR6jlMGqf7LuHu6Ad0/FutManager-UI-Design?node-id=0-1&p=f&t=j5T7PBRc8bP8slOh-0
+* Deployment Link: https://[ElPistol3ro-spec].github.io/[FutMnager]
+* Github Repository: https://github.com/ElPistol3ro-spec/FutManager.git
+* Figma UI/UX Wireframe: https://www.figma.com/design/SogUIR6jlMGqf7LuHu6Ad0/FutManager-UI-Design?node-id=0-1&p=f&t=j5T7PBRc8bP8slOh-0
